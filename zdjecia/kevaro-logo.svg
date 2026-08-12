@@ -1,0 +1,17 @@
+<svg width="720" height="220" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KEVARO">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfbfd"/>
+      <stop offset="0.45" stop-color="#c8c9cf"/>
+      <stop offset="0.55" stop-color="#9a9ba3"/>
+      <stop offset="1" stop-color="#e6e7ea"/>
+    </linearGradient>
+  </defs>
+  <!-- wordmark metaliczny -->
+  <text x="360" y="120" text-anchor="middle"
+        font-family="'Michroma','Eurostile','Arial Narrow',sans-serif"
+        font-size="96" font-weight="700" letter-spacing="6"
+        fill="url(#metal)">KEVARO</text>
+  <!-- żółta linia -->
+  <rect x="150" y="150" width="420" height="10" rx="5" fill="#ffc400"/>
+</svg>
