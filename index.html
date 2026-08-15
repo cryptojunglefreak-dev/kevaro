@@ -719,6 +719,8 @@ footer a:hover{color:var(--accent)}
 <div id="lightbox"><span class="lb-close">×</span><img src="" alt="Podgląd realizacji KEVARO"></div>
 
 <script>
+/* Zabezpieczenie: starsze przeglądarki bez IntersectionObserver — pokaż treść od razu, bez błędu który zatrzymywał cały skrypt (i produkty) */
+if(!('IntersectionObserver' in window)){window.IntersectionObserver=function(cb){return {observe:function(el){try{cb([{isIntersecting:true,target:el}]);}catch(e){}},unobserve:function(){},disconnect:function(){}};};}
 /* ===== LOADER + PŁYNNE OTWARCIE STRONY ===== */
 function revealHero(){document.getElementById('loader').classList.add('hide');document.body.classList.add('entered');}
 window.addEventListener('load',()=>setTimeout(revealHero,300));
@@ -916,16 +918,13 @@ document.getElementById('quoteForm').addEventListener('submit',e=>{e.preventDefa
   ];
   const grid=document.getElementById('prodGrid');
   products.forEach((p,i)=>{
-    const c=document.createElement('article');c.className='pcard reveal';
+    const c=document.createElement('article');c.className='pcard';
     c.innerHTML=`<div class="pc-img"><img src="${P}${p.img}.png" alt="${p.name} — modułowa podłoga KEVARO" loading="lazy"></div>
       <div class="pc-body"><span class="pc-tag">${p.tag}</span><h3>${p.name}</h3>
       <span class="pc-see">Zobacz produkt →</span></div>`;
     c.addEventListener('click',()=>openProd(p));
     grid.appendChild(c);
   });
-  // observer reveal dla nowo dodanych kart
-  const io2=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io2.unobserve(e.target);}});},{threshold:.1});
-  grid.querySelectorAll('.reveal').forEach(el=>io2.observe(el));
 
   const modal=document.getElementById('prodModal');
   const pmImg=document.getElementById('pmImg'),pmTag=document.getElementById('pmTag'),pmName=document.getElementById('pmName'),pmDesc=document.getElementById('pmDesc'),pmSpec=document.getElementById('pmSpec');
