@@ -412,22 +412,6 @@ footer a:hover{color:var(--accent)}
 <div id="loader"><div class="loader-mark">K</div></div>
 <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
-<!-- ============ INTRO: WEJŚCIE DO GARAŻU ============ -->
-<div id="garage">
-  <div class="garage-scene"></div>
-  <button class="skip" id="skipIntro">Pomiń →</button>
-  <div class="garage-ui">
-    <button class="enter-btn" id="enterBtn"><span class="eb-main">Wejdź do garażu</span><span class="eb-sub">ENTER</span></button>
-  </div>
-  <!-- brama garażowa (8 segmentów) -->
-  <div class="door">
-    <div class="door-panel"></div><div class="door-panel"></div>
-    <div class="door-panel"></div><div class="door-panel"></div>
-    <div class="door-panel"></div><div class="door-panel"></div>
-    <div class="door-panel"></div><div class="door-panel"></div>
-  </div>
-</div>
-
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -735,24 +719,11 @@ footer a:hover{color:var(--accent)}
 <div id="lightbox"><span class="lb-close">×</span><img src="" alt="Podgląd realizacji KEVARO"></div>
 
 <script>
-/* ===== LOADER + INTRO GARAŻU ===== */
-const garage=document.getElementById('garage');
-// blokuj scroll dopóki nie wejdziemy
-document.body.style.overflow='hidden';
-window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),450);});
-function enterGarage(){
-  if(garage.classList.contains('opening'))return;
-  garage.classList.add('opening');            // brama się unosi
-  document.body.style.overflow='';
-  setTimeout(()=>document.body.classList.add('entered'),2100);  // napis hero pojawia się płynnie po odsłonięciu
-  setTimeout(()=>garage.classList.add('gone'),2700);
-}
-document.getElementById('enterBtn').addEventListener('click',enterGarage);
-document.getElementById('skipIntro').addEventListener('click',enterGarage);
-// klik w dowolne miejsce sceny również wchodzi
-garage.querySelector('.garage-scene').addEventListener('click',enterGarage);
-// auto-wejście po 7 s, jeśli użytkownik nic nie zrobi
-setTimeout(()=>enterGarage(),7000);
+/* ===== LOADER + PŁYNNE OTWARCIE STRONY ===== */
+function revealHero(){document.getElementById('loader').classList.add('hide');document.body.classList.add('entered');}
+window.addEventListener('load',()=>setTimeout(revealHero,300));
+// fallback, gdyby 'load' nie zadziałał
+setTimeout(revealHero,1500);
 
 /* ===== NAV: scroll state + mobile ===== */
 const nav=document.getElementById('nav');
