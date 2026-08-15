@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Michroma&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="zdjecia/homepage.jpg">
 <!-- schema.org -->
 <script type="application/ld+json">
 {
@@ -104,7 +105,8 @@ header.nav.scrolled{background:rgba(10,10,11,.72);backdrop-filter:blur(16px);bor
 
 /* ================= HERO ================= */
 .hero{min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:23vh}
-.hero-bg{position:absolute;inset:0;z-index:-2;background:url('zdjecia/homepage.jpg') center 54%/cover no-repeat;filter:brightness(.55) saturate(.98);transform:scale(1.08);will-change:transform}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:url('zdjecia/homepage.jpg') center 54%/cover no-repeat;filter:brightness(.55) saturate(.98);transform:scale(1.08);will-change:transform,opacity;opacity:0;transition:opacity 1.4s ease}
+body.entered .hero-bg{opacity:1}
 /* biała poświata neonu (osobna warstwa, idealnie dopasowana) + migotanie */
 .hero-neon{position:absolute;inset:0;z-index:-1;background:url('zdjecia/showroom/kevaro-neon.png') center 57%/cover no-repeat;mix-blend-mode:screen;pointer-events:none;transform:scale(1.08);will-change:opacity,transform;animation:neonFlicker 4.2s infinite}
 @keyframes neonFlicker{
