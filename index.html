@@ -323,6 +323,7 @@ body.modal-open{overflow:hidden}
 .map-ph .pin{width:54px;height:54px;border-radius:50%;background:rgba(255,196,0,.14);color:var(--accent);display:flex;align-items:center;justify-content:center}
 .info-row{display:flex;gap:14px;align-items:center;margin-top:18px;color:var(--gray);font-size:14px}
 .info-row b{color:var(--white)}
+.cmap{width:100%;height:340px;border:1px solid var(--line);border-radius:var(--radius-lg);display:block;filter:grayscale(.2) contrast(1.05)}
 
 /* ============ FOOTER ============ */
 footer{border-top:1px solid var(--line);padding:56px 0 30px;background:var(--black)}
@@ -716,10 +717,10 @@ footer a:hover{color:var(--accent)}
       <div class="slide" style="background-image:url('zdjecia/homepage.jpg')"></div>
       <div class="slide" style="background-image:url('zdjecia/IMG_2185.JPG')"></div>
       <div class="slide" style="background-image:url('zdjecia/2.JPG')"></div>
-      <div class="slide" style="background-image:url('zdjecia/IMG_2191.JPG')"></div>
       <div class="slide" style="background-image:url('zdjecia/IMG_2205.JPG')"></div>
-      <div class="slide" style="background-image:url('zdjecia/showroom/showroom-1.jpg')"></div>
-      <div class="slide" style="background-image:url('zdjecia/IMG_2206.JPG')"></div>
+      <div class="slide" style="background-image:url('zdjecia/IMG_2546.JPG')"></div>
+      <div class="slide" style="background-image:url('zdjecia/IMG_2548.JPG')"></div>
+      <div class="slide" style="background-image:url('zdjecia/IMG_2549.JPG')"></div>
       <button class="slide-nav prev" id="slidePrev" aria-label="Poprzednie">‹</button>
       <button class="slide-nav next" id="slideNext" aria-label="Następne">›</button>
       <div class="slide-dots" id="slideDots"></div>
@@ -762,10 +763,8 @@ footer a:hover{color:var(--accent)}
         <p id="formMsg" style="color:var(--accent);font-size:14px;margin-top:14px;display:none">Dziękujemy! To wersja demonstracyjna formularza — podłączymy go do skrzynki na etapie wdrożenia.</p>
       </form>
       <div class="reveal d1">
-        <div class="map-ph">
-          <div class="pin">📍</div>
-          <div><b style="color:var(--white)">KEVARO</b><br>Miejsce na mapę / adres showroomu</div>
-        </div>
+        <iframe class="cmap" src="https://www.google.com/maps?q=Kwietniowa%2011,%2005-090%20Wyp%C4%99dy,%20Polska&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="KEVARO — Kwietniowa 11, 05-090 Wypędy"></iframe>
+        <div class="info-row">📍 <span><b>Adres:</b> Kwietniowa 11, 05-090 Wypędy</span></div>
         <div class="info-row">✉️ <span><b>E-mail:</b> kontakt@kevaro.pl</span></div>
         <div class="info-row">📞 <span><b>Telefon:</b> +48 000 000 000</span></div>
         <div class="info-row">🕒 <span><b>Godziny:</b> pon.–pt. 9:00–17:00</span></div>
