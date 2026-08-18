@@ -22,7 +22,7 @@
   "@context":"https://schema.org","@type":"Organization","name":"KEVARO",
   "description":"Modułowe podłogi garażowe klasy premium z polipropylenu.",
   "slogan":"Zmień garaż w profesjonalny showroom.",
-  "areaServed":"PL","email":"kontakt@kevaro.pl"
+  "areaServed":"PL","email":"info@kevaro.pl"
 }
 </script>
 <style>
@@ -755,17 +755,22 @@ footer a:hover{color:var(--accent)}
     </div>
     <div class="contact-grid">
       <form class="form reveal" id="quoteForm" novalidate>
+        <!-- Web3Forms: wpisz swój klucz (z web3forms.com dla info@kevaro.pl) w value poniżej -->
+        <input type="hidden" name="access_key" value="b291f349-f8c6-42e2-8002-ae494b2a7db8">
+        <input type="hidden" name="subject" value="Nowe zapytanie ze strony KEVARO">
+        <input type="hidden" name="from_name" value="Strona KEVARO">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
         <div class="field"><label>Imię i nazwisko</label><input type="text" name="name" required placeholder="Jan Kowalski"></div>
         <div class="field"><label>E-mail</label><input type="email" name="email" required placeholder="jan@email.pl"></div>
         <div class="field"><label>Telefon</label><input type="tel" name="phone" placeholder="+48 600 000 000"></div>
         <div class="field"><label>Wiadomość</label><textarea name="msg" placeholder="Powierzchnia garażu, kolor, pytania..."></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Wyślij zapytanie →</button>
-        <p id="formMsg" style="color:var(--accent);font-size:14px;margin-top:14px;display:none">Dziękujemy! To wersja demonstracyjna formularza — podłączymy go do skrzynki na etapie wdrożenia.</p>
+        <p id="formMsg" style="font-size:14px;margin-top:14px;display:none"></p>
       </form>
       <div class="reveal d1">
         <iframe class="cmap" src="https://www.google.com/maps?q=Kwietniowa%2011,%2005-090%20Wyp%C4%99dy,%20Polska&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="KEVARO — Kwietniowa 11, 05-090 Wypędy"></iframe>
         <div class="info-row">📍 <span><b>Adres:</b> Kwietniowa 11, 05-090 Wypędy</span></div>
-        <div class="info-row">✉️ <span><b>E-mail:</b> kontakt@kevaro.pl</span></div>
+        <div class="info-row">✉️ <span><b>E-mail:</b> info@kevaro.pl</span></div>
         <div class="info-row">📞 <span><b>Telefon:</b> +48 000 000 000</span></div>
         <div class="info-row">🕒 <span><b>Godziny:</b> pon.–pt. 9:00–17:00</span></div>
       </div>
@@ -929,7 +934,17 @@ document.querySelectorAll('.q button').forEach(b=>b.addEventListener('click',()=
 }));
 
 /* ===== FORM (demo) ===== */
-document.getElementById('quoteForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('formMsg').style.display='block';e.target.reset();});
+document.getElementById('quoteForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var form=e.target, msg=document.getElementById('formMsg');
+  var btn=form.querySelector('button[type=submit]'), old=btn?btn.textContent:'';
+  if(btn){btn.disabled=true;btn.textContent='Wysyłanie…';}
+  function done(ok,text){msg.textContent=text;msg.style.color=ok?'var(--accent)':'#ff6a6a';msg.style.display='block';if(btn){btn.disabled=false;btn.textContent=old;}}
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
+    .then(function(r){return r.json();})
+    .then(function(d){ if(d && d.success){done(true,'Dziękujemy! Wiadomość została wysłana — odezwiemy się wkrótce.');form.reset();} else {done(false,'Nie udało się wysłać. Napisz bezpośrednio na info@kevaro.pl.');} })
+    .catch(function(){done(false,'Nie udało się wysłać. Napisz bezpośrednio na info@kevaro.pl.');});
+});
 
 /* ===== GALERIA PRODUKTÓW: modal (karty są statycznym HTML — działają nawet bez JS) ===== */
 (function(){
